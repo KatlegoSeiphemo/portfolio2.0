@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="keywords"
+      content="fullstack developer, fullstack, portfolio, personal website, html, css, javascript, react"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/fa62c117c7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #f0f0f0; /* Light text color */
+            background-color: #282c34; /* Dark background */
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3 {
+            color: #61dafb; /* Light blue for headers */
+        }
+
+        .header {
+            background-color: #1e1e1e; /* Darker header */
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .link {
+            color: #61dafb; /* Light blue for links */
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .nav__list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav__list-item {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .nav__list-item a {
+            font-weight: 500;
+        }
+
+        .about__contact a {
+            margin-right: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #1e1e1e;
+        }
+
+        .projects__grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .project {
+            background-color: #333;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px; /* Fixed width for consistent layout */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .project h3 {
+            margin-top: 0;
+        }
+
+        .project__stack {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project__stack-item {
+            background-color: #444;
+            border-radius: 5px;
+            padding: 5px 8px;
+            margin: 5px 0;
+        }
+
+        .btn {
+            border: none;
+            background: transparent;
+            color: #61dafb;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1); /* Hover effect */
+        }
+    </style>
+    <title>Katlego Seiphemo</title>
+</head>
+<body class="light" id="top">
+    <header class="header center">
+        <h3>
+            <a href="https://github.com/KatlegoSeiphemo" class="link">GitHub</a>
+        </h3>
+
+        <nav class="nav center">
+            <ul class="nav__list center">
+                <li class="nav__list-item">
+                    <a class="link link--nav" href="#projects">Projects</a>
+                </li>
+                <li class="nav__list-item">
+                    <a class="link link--nav" href="#skills">Skills</a>
+                </li>
+                <li class="nav__list-item">
+                    <a class="link link--nav" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- About -->
+        <div class="about center">
+            <h1>Hi, I am <span class="about__name">Katlego Seiphemo</span></h1>
+            <h2 class="about__role">A Full Stack Developer.</h2>
+            <p class="about__desc">
+                As a Full Stack Developer, I specialize in creating dynamic web applications with a strong foundation in HTML, CSS, and JavaScript for front-end development. I use frameworks like React and Vue.js to build intuitive user interfaces. On the back end, I leverage Python with frameworks like Flask and Django, and I manage databases using SQL and NoSQL technologies. I thrive in collaborative environments, continuously learning and applying the latest technologies to deliver high-quality, scalable solutions.
+            </p>
+
+            <div class="about__contact center">
+                <a href="https://github.com/PhilaNgcamu" aria-label="github" class="link link--icon">
+                    <i aria-hidden="true" class="fab fa-github"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/philasande-ngcamu-282992207/" aria-label="linkedin" class="link link--icon">
+                    <i aria-hidden="true" class="fab fa-linkedin"></i>
+                </a>
+
+                <a href="https://www.facebook.com/" aria-label="facebook" class="link link--icon"> <!-- Insert your Facebook link -->
+                    <i aria-hidden="true" class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <section id="projects" class="section projects">
+            <h2 class="section__title">Projects</h2>
+
+            <div class="projects__grid">
+                <div class="project">
+                    <h3>Recipe App</h3>
+                    <p class="project__description">Search for your favourite food!</p>
+                    <ul class="project__stack">
+                        <li class="project__stack-item">ReactJS</li>
+                        <li class="project__stack-item">Redux</li>
+                    </ul>
+                    <a href="https://github.com/PhilaNgcamu/recipe-search-app" aria-label="source code" class="link link--icon">
+                        <i aria-hidden="true" class="fab fa-github"></i>
+                    </a>
+                    <a href="https://recipe-search-created-by-phila.netlify.app/" aria-label="live preview" class="link link--icon">
+                        <i aria-hidden="true" class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="project">
+                    <h3>Dashboard Mockup</h3>
+                    <p class="project__description">A system for more experienced developers to connect with junior developers to share technical knowledge on specific projects.</p>
+                    <ul class="project__stack">
+                        <li class="project__stack-item">ReactJS</li>
+                        <li class="project__stack-item">Material UI</li>
+                    </ul>
+                    <a href="https://github.com/PhilaNgcamu/dashboard-mockup" aria-label="source code" class="link link--icon">
+                        <i aria-hidden="true" class="fab fa-github"></i>
+                    </a>
+                    <a href="https://dashboard-mockup-in-react.netlify.app/" aria-label="live preview" class="link link--icon">
+                        <i aria-hidden="true" class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="project">
+                    <h3>Memory Game</h3>
+                    <p class="project__description">Start playing Memory Game and the match cards. Enjoy!</p>
+                    <ul class="project__stack">
+                        <li class="project__stack-item">CSS</li>
+                        <li class="project__stack-item">ReactJS</li>
+                        <li class="project__stack-item">Redux</li>
+                    </ul>
+
+                    <a href="https://github.com/PhilaNgcamu/memory-game" aria-label="source code" class="link link--icon">
+                        <i aria-hidden="true" class="fab fa-github"></i>
+                    </a>
+                    <a href="https://memory-game-created-by-phila.netlify.app/" aria-label="live preview" class="link link--icon">
+                        <i aria-hidden="true" class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="project">
+                    <h3>Beat The Highest Score</h3>
+                    <p class="project__description">Beat your highest score! (Play on larger screens)</p>
+                    <ul class="project__stack">
+                        <li class="project__stack-item">CSS</li>
+                        <li class="project__stack-item">Redux</li>
+                    </ul>
+
+                    <a href="https://github.com/PhilaNgcamu/Beat-The-Highest-Score" aria-label="source code" class="link link--icon">
+                        <i aria-hidden="true" class="fab fa-github"></i>
+                    </a>
+                    <a href="https://beat-the-highest-score.netlify.app/" aria-label="live preview" class="link link--icon">
+                        <i aria-hidden="true" class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="project">
+                    <h3>Scan QR Code</h3>
+                    <p class="project__description">Scan a YAML encoded QR code to get a techie's contact information. The QR codes are under the <i>qr_code_samples</i> folder on GitHub.</p>
+                    <ul class="project__stack">
+                        <li class="project__stack-item">React Native / Expo</li>
+                        <li class="project__stack-item">Gluestack</li>
+                        <li class="project__stack-item">SQLite</li>
+                    </ul>
+
+                    <a href="https://github.com/PhilaNgcamu/scan-a-qr-code" aria-label="source code" class="link link--icon">
+                        <i aria-hidden="true" class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section skills" id="skills">
+            <h2 class="section__title">Skills</h2>
+            <ul class="skills__list">
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-html5" style="color: #e34c26"></i> HTML
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-css3-alt" style="color: #1572b6"></i> CSS
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-js" style="color: #f0db4f"></i> JavaScript
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-node-js" style="color: rgb(33, 170, 9)"></i> NodeJS
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fas fa-database" style="color: #000"></i> PostgreSQL
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fas fa-database" style="color: #000"></i> SQLite
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-docker" style="color: #01a4fc"></i> Docker
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-react" style="color: #61dafb"></i> ReactJS
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-react" style="color: #61dafb"></i> React Native
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-react" style="color: #61dafb"></i> Expo
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-react" style="color: #764abc"></i> Redux
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-react" style="color: #00bcd4"></i> Material UI
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-react" style="color: #61dafb"></i> Gluestack
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-git-alt" style="color: #f34f29"></i> Git
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fab fa-npm" style="color: #f34f29"></i> NPM
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fa fa-cog"></i> Jest
+                </li>
+                <li class="skills__list-item btn btn--plain">
+                    <i class="fa fa-cog"></i> Jasmine
+                </li>
+            </ul>
+        </section>
+
+        <!-- Contact -->
+        <section class="section contact center" id="contact">
+            <h2 class="section__title">Contact</h2>
+            <a href="mailto:philasandengcamu.pn@gmail.com">
+                <span class="btn btn--outline">Email me</span>
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="https://github.com/PhilaNgcamu" aria-label="github" class="link link--icon">
+            <i aria-hidden="true" class="fab fa-github"></i>
+        </a>
+
+        <a href="https://www.linkedin.com/in/philasande-ngcamu-282992207/" aria-label="linkedin" class="link link--icon">
+            <i aria-hidden="true" class="fab fa-linkedin"></i>
+        </a>
+
+        <a href="https://www.facebook.com/" aria-label="facebook" class="link link--icon">
+            <i aria-hidden="true" class="fab fa-facebook"></i>
+        </a>
+    </footer>
+
+    <div class="scroll-container">
+        <div class="scroll-top">
+            <a aria-label="Scroll up" href="#top">
+                <i aria-hidden="true" class="fas fa-arrow-up"></i>
+            </a>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
