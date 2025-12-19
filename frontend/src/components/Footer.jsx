@@ -31,7 +31,7 @@ const Footer = () => {
               }`}
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
-              KS<span className="text-gray-500">.</span>
+              Katlego Seiphemo<span className="text-gray-500">.</span>
             </a>
             <p
               className="text-gray-500 text-sm mt-2"
