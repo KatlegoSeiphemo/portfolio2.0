@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Send, Github, Linkedin, Mail, Phone, ArrowUpRight } from 'lucide-react';
+import axios from 'axios';
 import { personalInfo } from '../data/mock';
 import { useTheme } from '../context/ThemeContext';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -11,24 +14,30 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
   const { isDark } = useTheme();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
-    // Mock submission - will be connected to backend later
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setSubmitted(true);
-    setIsSubmitting(false);
-    setFormData({ name: '', email: '', message: '' });
-    
-    setTimeout(() => setSubmitted(false), 3000);
+    try {
+      await axios.post(`${BACKEND_URL}/api/contact`, formData);
+      setSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      console.error('Contact form error:', err);
+      setError('Failed to send message. Please try again or email directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
