@@ -45,28 +45,28 @@ export const projects = [
     description: "A modern e-commerce platform featuring seamless shopping experiences, secure payment integration, and intuitive product discovery. Built with a focus on performance and user experience.",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-    github: "https://github.com/KatlegoSeiphemo",
+    github: "https://github.com/KatlegoSeiphemo/odysseyfinds.git",
     live: "#",
     featured: true
   },
   {
     id: 2,
     name: "Pathrise",
-    description: "An innovative educational platform revolutionizing learning experiences. Features interactive courses, progress tracking, and collaborative tools. Nominated for FNB App of the Year 2025.",
-    tags: ["Vue.js", "Python", "Django", "PostgreSQL"],
+    description: "An innovative educational mobile platform revolutionizing learning experiences. Features interactive courses, progress tracking, and collaborative tools. Nominated for FNB App of the Year 2025.",
+    tags: ["Flutter", "Dart", "Firebase", "Mobile"],
     image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
-    github: "https://github.com/KatlegoSeiphemo",
+    github: "https://github.com/KatlegoSeiphemo/pathrise.git",
     live: "#",
     featured: true,
     award: "Nominated for FNB App of the Year 2025"
   },
   {
     id: 3,
-    name: "Stokvel App",
-    description: "A fintech application designed for community savings and investment. Features group money management, contribution tracking, and investment opportunities for collective financial growth.",
-    tags: ["Flutter", "Firebase", "Node.js", "MongoDB"],
+    name: "Stokvel Dashboard",
+    description: "A fintech dashboard application designed for community savings and investment. Features group money management, contribution tracking, and investment opportunities for collective financial growth.",
+    tags: ["React", "Dashboard", "Finance", "Analytics"],
     image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=600&fit=crop",
-    github: "https://github.com/KatlegoSeiphemo",
+    github: "https://github.com/KatlegoSeiphemo/my-dashboard.git",
     live: "#",
     featured: true
   }
