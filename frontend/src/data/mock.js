@@ -5,7 +5,8 @@ export const personalInfo = {
   title: "Full Stack Developer",
   tagline: "Building Modern, Scalable & User-Friendly Applications",
   bio: "I'm a full-stack developer passionate about building modern, scalable, and user-friendly applications. I have experience with frontend technologies like HTML, CSS, JavaScript, React, and Vue, as well as backend development using Node.js, Python, Java, and their frameworks. I'm also skilled in databases and have experience building mobile applications with Flutter. I love turning complex problems into elegant solutions, integrating both web and mobile platforms, and continuously exploring new technologies to create high-quality, real-world projects.",
-  email: "katlego@example.com",
+  email: "katlegoseiphemo@gmail.com",
+  phone: "+27 67 825 6704",
   github: "https://github.com/KatlegoSeiphemo",
   linkedin: "https://www.linkedin.com/in/katlego-seiphemo-819779328",
   images: {
