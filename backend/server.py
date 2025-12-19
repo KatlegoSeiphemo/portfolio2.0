@@ -84,6 +84,41 @@ async def get_status_checks():
     
     return status_checks
 
+
+# Contact Form Endpoints
+@api_router.post("/contact", response_model=Contact, status_code=201)
+async def create_contact(input: ContactCreate):
+    """Save a contact form submission to the database."""
+    try:
+        contact_obj = Contact(
+            name=input.name,
+            email=input.email,
+            message=input.message
+        )
+        
+        # Convert to dict and serialize datetime for MongoDB
+        doc = contact_obj.model_dump()
+        doc['created_at'] = doc['created_at'].isoformat()
+        
+        await db.contacts.insert_one(doc)
+        logger.info(f"New contact submission from: {input.email}")
+        return contact_obj
+    except Exception as e:
+        logger.error(f"Error saving contact: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to save contact submission")
+
+
+@api_router.get("/contacts", response_model=List[Contact])
+async def get_contacts():
+    """Retrieve all contact submissions (for admin purposes)."""
+    contacts = await db.contacts.find({}, {"_id": 0}).to_list(1000)
+    
+    for contact in contacts:
+        if isinstance(contact.get('created_at'), str):
+            contact['created_at'] = datetime.fromisoformat(contact['created_at'])
+    
+    return contacts
+
 # Include the router in the main app
 app.include_router(api_router)
 
