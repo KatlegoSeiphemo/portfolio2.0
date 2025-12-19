@@ -66,7 +66,7 @@ export const projects = [
     description: "A fintech dashboard application designed for community savings and investment. Features group money management, contribution tracking, and investment opportunities for collective financial growth.",
     tags: ["React", "Dashboard", "Finance", "Analytics"],
     image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=600&fit=crop",
-    github: "https://github.com/KatlegoSeiphemo/my-dashboard.git",
+    github: "https://github.com/KatlegoSeiphemo/savvystokvel.git",
     live: "#",
     featured: true
   }
