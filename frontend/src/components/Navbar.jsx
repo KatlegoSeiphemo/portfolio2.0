@@ -54,7 +54,7 @@ const Navbar = () => {
             }`}
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
-            KS<span className="text-gray-500">.</span>
+            Katlego Seiphemo<span className="text-gray-500">.</span>
           </a>
 
           {/* Desktop Navigation */}
