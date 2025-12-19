@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowDown, Github, Linkedin } from 'lucide-react';
 import { personalInfo } from '../data/mock';
+import { useTheme } from '../context/ThemeContext';
 
 const HeroSection = () => {
   const [imageIndex, setImageIndex] = useState(0);
   const images = [personalInfo.images.portrait1, personalInfo.images.portrait2];
+  const { isDark } = useTheme();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,7 +25,9 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden"
+      className={`relative min-h-screen flex items-center justify-center overflow-hidden transition-colors duration-500 ${
+        isDark ? 'bg-black' : 'bg-white'
+      }`}
     >
       {/* Animated Background Grid */}
       <div className="absolute inset-0 opacity-20">
@@ -31,8 +35,8 @@ const HeroSection = () => {
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+              linear-gradient(${isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)'} 1px, transparent 1px),
+              linear-gradient(90deg, ${isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)'} 1px, transparent 1px)
             `,
             backgroundSize: '50px 50px'
           }}
@@ -40,7 +44,11 @@ const HeroSection = () => {
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+      <div className={`absolute inset-0 ${
+        isDark 
+          ? 'bg-gradient-to-b from-black via-transparent to-black' 
+          : 'bg-gradient-to-b from-white via-transparent to-white'
+      }`} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -56,19 +64,25 @@ const HeroSection = () => {
             </div>
             <div className="overflow-hidden">
               <h1
-                className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 animate-slideUp"
+                className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-slideUp ${
+                  isDark ? 'text-white' : 'text-black'
+                }`}
                 style={{ fontFamily: 'Archivo, sans-serif', animationDelay: '0.4s' }}
               >
                 Katlego
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
+                <span className={`text-transparent bg-clip-text ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-gray-200 to-gray-500' 
+                    : 'bg-gradient-to-r from-gray-700 to-gray-400'
+                }`}>
                   Seiphemo
                 </span>
               </h1>
             </div>
             <div className="overflow-hidden">
               <p
-                className="text-gray-400 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-8 animate-slideUp"
+                className="text-gray-500 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-8 animate-slideUp"
                 style={{ fontFamily: 'Archivo, sans-serif', animationDelay: '0.6s' }}
               >
                 {personalInfo.tagline}
@@ -84,7 +98,11 @@ const HeroSection = () => {
                   e.preventDefault();
                   document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="group px-8 py-4 bg-white text-black font-medium tracking-wide hover:bg-gray-200 transition-all duration-300 flex items-center gap-2"
+                className={`group px-8 py-4 font-medium tracking-wide transition-all duration-300 flex items-center gap-2 ${
+                  isDark 
+                    ? 'bg-white text-black hover:bg-gray-200' 
+                    : 'bg-black text-white hover:bg-gray-800'
+                }`}
                 style={{ fontFamily: 'Archivo, sans-serif' }}
               >
                 View Projects
@@ -95,7 +113,11 @@ const HeroSection = () => {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
+                  className={`p-3 border transition-all duration-300 ${
+                    isDark 
+                      ? 'border-white/20 text-white hover:bg-white hover:text-black' 
+                      : 'border-black/20 text-black hover:bg-black hover:text-white'
+                  }`}
                 >
                   <Github size={20} />
                 </a>
@@ -103,7 +125,11 @@ const HeroSection = () => {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
+                  className={`p-3 border transition-all duration-300 ${
+                    isDark 
+                      ? 'border-white/20 text-white hover:bg-white hover:text-black' 
+                      : 'border-black/20 text-black hover:bg-black hover:text-white'
+                  }`}
                 >
                   <Linkedin size={20} />
                 </a>
@@ -115,23 +141,29 @@ const HeroSection = () => {
           <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end">
             <div className="relative w-72 h-96 md:w-80 md:h-[28rem] lg:w-96 lg:h-[32rem]">
               {/* Decorative Frame */}
-              <div className="absolute -inset-4 border border-white/20" />
-              <div className="absolute -inset-8 border border-white/10" />
+              <div className={`absolute -inset-4 border ${isDark ? 'border-white/20' : 'border-black/20'}`} />
+              <div className={`absolute -inset-8 border ${isDark ? 'border-white/10' : 'border-black/10'}`} />
               
               {/* Image Container */}
-              <div className="relative w-full h-full overflow-hidden bg-gray-900">
+              <div className={`relative w-full h-full overflow-hidden ${isDark ? 'bg-gray-900' : 'bg-gray-100'}`}>
                 {images.map((img, index) => (
                   <img
                     key={index}
                     src={img}
                     alt={`Katlego Seiphemo ${index + 1}`}
-                    className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 grayscale ${
+                    className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 ${
+                      isDark ? 'grayscale' : 'grayscale-0'
+                    } ${
                       imageIndex === index ? 'opacity-100' : 'opacity-0'
                     }`}
                   />
                 ))}
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className={`absolute inset-0 ${
+                  isDark 
+                    ? 'bg-gradient-to-t from-black/50 via-transparent to-transparent' 
+                    : 'bg-gradient-to-t from-white/30 via-transparent to-transparent'
+                }`} />
               </div>
 
               {/* Image Indicators */}
@@ -141,7 +173,9 @@ const HeroSection = () => {
                     key={index}
                     onClick={() => setImageIndex(index)}
                     className={`w-8 h-1 transition-all duration-300 ${
-                      imageIndex === index ? 'bg-white' : 'bg-white/30'
+                      imageIndex === index 
+                        ? (isDark ? 'bg-white' : 'bg-black') 
+                        : (isDark ? 'bg-white/30' : 'bg-black/30')
                     }`}
                   />
                 ))}
@@ -154,7 +188,9 @@ const HeroSection = () => {
       {/* Scroll Indicator */}
       <button
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 hover:text-white transition-colors duration-300 animate-bounce"
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-colors duration-300 animate-bounce ${
+          isDark ? 'text-white/50 hover:text-white' : 'text-black/50 hover:text-black'
+        }`}
       >
         <ArrowDown size={24} />
       </button>
