@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, Award } from 'lucide-react';
 import { projects } from '../data/mock';
+import { useTheme } from '../context/ThemeContext';
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project, index, isDark }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -11,21 +12,33 @@ const ProjectCard = ({ project, index }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative overflow-hidden bg-white/[0.02] border border-white/10 hover:border-white/30 transition-all duration-500">
+      <div className={`relative overflow-hidden border transition-all duration-500 ${
+        isDark 
+          ? 'bg-white/[0.02] border-white/10 hover:border-white/30' 
+          : 'bg-black/[0.02] border-black/10 hover:border-black/30'
+      }`}>
         {/* Project Image */}
         <div className="relative aspect-video overflow-hidden">
           <img
             src={project.image}
             alt={project.name}
-            className={`w-full h-full object-cover transition-all duration-700 grayscale ${
+            className={`w-full h-full object-cover transition-all duration-700 ${
+              isDark ? 'grayscale' : ''
+            } ${
               isHovered ? 'scale-110 grayscale-0' : 'scale-100'
             }`}
           />
-          <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all duration-500" />
+          <div className={`absolute inset-0 transition-all duration-500 ${
+            isDark 
+              ? 'bg-black/60 group-hover:bg-black/40' 
+              : 'bg-white/40 group-hover:bg-white/20'
+          }`} />
           
           {/* Award Badge */}
           {project.award && (
-            <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 bg-white text-black text-xs font-medium">
+            <div className={`absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 text-xs font-medium ${
+              isDark ? 'bg-white text-black' : 'bg-black text-white'
+            }`}>
               <Award size={14} />
               <span style={{ fontFamily: 'Archivo, sans-serif' }}>{project.award}</span>
             </div>
@@ -37,7 +50,11 @@ const ProjectCard = ({ project, index }) => {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 bg-white text-black hover:bg-gray-200 transition-all duration-300"
+              className={`p-4 transition-all duration-300 ${
+                isDark 
+                  ? 'bg-white text-black hover:bg-gray-200' 
+                  : 'bg-black text-white hover:bg-gray-800'
+              }`}
             >
               <Github size={20} />
             </a>
@@ -45,7 +62,11 @@ const ProjectCard = ({ project, index }) => {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 border border-white text-white hover:bg-white hover:text-black transition-all duration-300"
+              className={`p-4 border transition-all duration-300 ${
+                isDark 
+                  ? 'border-white text-white hover:bg-white hover:text-black' 
+                  : 'border-black text-black hover:bg-black hover:text-white'
+              }`}
             >
               <ExternalLink size={20} />
             </a>
@@ -56,7 +77,11 @@ const ProjectCard = ({ project, index }) => {
         <div className="p-6">
           <div className="flex items-start justify-between gap-4 mb-4">
             <h3
-              className="text-xl font-semibold text-white group-hover:text-gray-300 transition-colors duration-300"
+              className={`text-xl font-semibold transition-colors duration-300 ${
+                isDark 
+                  ? 'text-white group-hover:text-gray-300' 
+                  : 'text-black group-hover:text-gray-700'
+              }`}
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
               {project.name}
@@ -69,7 +94,9 @@ const ProjectCard = ({ project, index }) => {
             </span>
           </div>
           <p
-            className="text-gray-400 text-sm leading-relaxed mb-6"
+            className={`text-sm leading-relaxed mb-6 ${
+              isDark ? 'text-gray-400' : 'text-gray-600'
+            }`}
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
             {project.description}
@@ -78,7 +105,11 @@ const ProjectCard = ({ project, index }) => {
             {project.tags.map((tag, i) => (
               <span
                 key={i}
-                className="px-3 py-1 text-xs text-gray-500 border border-white/10 hover:border-white/30 hover:text-white transition-all duration-300"
+                className={`px-3 py-1 text-xs border transition-all duration-300 ${
+                  isDark 
+                    ? 'text-gray-500 border-white/10 hover:border-white/30 hover:text-white' 
+                    : 'text-gray-500 border-black/10 hover:border-black/30 hover:text-black'
+                }`}
                 style={{ fontFamily: 'Archivo, sans-serif' }}
               >
                 {tag}
@@ -89,17 +120,27 @@ const ProjectCard = ({ project, index }) => {
       </div>
 
       {/* Decorative Corner */}
-      <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b border-r border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className={`absolute -bottom-2 -right-2 w-8 h-8 border-b border-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+        isDark ? 'border-white/20' : 'border-black/20'
+      }`} />
     </div>
   );
 };
 
 const ProjectsSection = () => {
+  const { isDark } = useTheme();
+
   return (
-    <section id="projects" className="relative py-32 bg-black">
+    <section id="projects" className={`relative py-32 transition-colors duration-500 ${
+      isDark ? 'bg-black' : 'bg-white'
+    }`}>
       {/* Background Elements */}
-      <div className="absolute top-20 right-20 w-64 h-64 border border-white/5 rounded-full" />
-      <div className="absolute bottom-20 left-20 w-32 h-32 border border-white/5" />
+      <div className={`absolute top-20 right-20 w-64 h-64 border rounded-full ${
+        isDark ? 'border-white/5' : 'border-black/5'
+      }`} />
+      <div className={`absolute bottom-20 left-20 w-32 h-32 border ${
+        isDark ? 'border-white/5' : 'border-black/5'
+      }`} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
@@ -112,7 +153,7 @@ const ProjectsSection = () => {
               Portfolio
             </p>
             <h2
-              className="text-4xl md:text-5xl font-bold text-white"
+              className={`text-4xl md:text-5xl font-bold ${isDark ? 'text-white' : 'text-black'}`}
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
               Featured Projects
@@ -129,7 +170,7 @@ const ProjectsSection = () => {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <ProjectCard key={project.id} project={project} index={index} isDark={isDark} />
           ))}
         </div>
       </div>

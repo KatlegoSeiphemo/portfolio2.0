@@ -1,8 +1,11 @@
 import React from 'react';
 import { Github, Linkedin, ArrowUp } from 'lucide-react';
 import { personalInfo } from '../data/mock';
+import { useTheme } from '../context/ThemeContext';
 
 const Footer = () => {
+  const { isDark } = useTheme();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -10,7 +13,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative py-16 bg-black border-t border-white/10">
+    <footer className={`relative py-16 border-t transition-colors duration-500 ${
+      isDark ? 'bg-black border-white/10' : 'bg-white border-black/10'
+    }`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Copyright */}
@@ -21,7 +26,9 @@ const Footer = () => {
                 e.preventDefault();
                 scrollToTop();
               }}
-              className="text-2xl font-bold text-white hover:text-gray-300 transition-colors duration-300"
+              className={`text-2xl font-bold transition-colors duration-300 ${
+                isDark ? 'text-white hover:text-gray-300' : 'text-black hover:text-gray-700'
+              }`}
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
               KS<span className="text-gray-500">.</span>
@@ -44,7 +51,9 @@ const Footer = () => {
                   e.preventDefault();
                   document.querySelector(`#${link.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="text-sm text-gray-500 hover:text-white transition-colors duration-300"
+                className={`text-sm transition-colors duration-300 ${
+                  isDark ? 'text-gray-500 hover:text-white' : 'text-gray-500 hover:text-black'
+                }`}
                 style={{ fontFamily: 'Archivo, sans-serif' }}
               >
                 {link}
@@ -58,7 +67,9 @@ const Footer = () => {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-gray-500 hover:text-white transition-colors duration-300"
+              className={`p-2 transition-colors duration-300 ${
+                isDark ? 'text-gray-500 hover:text-white' : 'text-gray-500 hover:text-black'
+              }`}
             >
               <Github size={18} />
             </a>
@@ -66,14 +77,20 @@ const Footer = () => {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-gray-500 hover:text-white transition-colors duration-300"
+              className={`p-2 transition-colors duration-300 ${
+                isDark ? 'text-gray-500 hover:text-white' : 'text-gray-500 hover:text-black'
+              }`}
             >
               <Linkedin size={18} />
             </a>
-            <div className="w-px h-6 bg-white/20 mx-2" />
+            <div className={`w-px h-6 mx-2 ${isDark ? 'bg-white/20' : 'bg-black/20'}`} />
             <button
               onClick={scrollToTop}
-              className="p-2 border border-white/20 text-gray-500 hover:text-white hover:border-white transition-all duration-300"
+              className={`p-2 border transition-all duration-300 ${
+                isDark 
+                  ? 'border-white/20 text-gray-500 hover:text-white hover:border-white' 
+                  : 'border-black/20 text-gray-500 hover:text-black hover:border-black'
+              }`}
             >
               <ArrowUp size={18} />
             </button>
@@ -81,7 +98,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Accent Line */}
-        <div className="mt-12 pt-8 border-t border-white/5">
+        <div className={`mt-12 pt-8 border-t ${isDark ? 'border-white/5' : 'border-black/5'}`}>
           <p
             className="text-center text-xs text-gray-600 tracking-widest"
             style={{ fontFamily: 'Archivo, sans-serif' }}

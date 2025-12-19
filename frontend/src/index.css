@@ -16,8 +16,19 @@ body {
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Theme-based body styles */
+.dark body,
+html.dark body {
   background-color: #000;
   color: #fff;
+}
+
+.light body,
+html.light body {
+  background-color: #fff;
+  color: #000;
 }
 
 code {
@@ -25,28 +36,51 @@ code {
     monospace;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
+/* Custom Scrollbar - Dark */
+.dark ::-webkit-scrollbar {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
+.dark ::-webkit-scrollbar-track {
   background: #000;
 }
 
-::-webkit-scrollbar-thumb {
+.dark ::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.dark ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
+/* Custom Scrollbar - Light */
+.light ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
 /* Selection Color */
-::selection {
+.dark ::selection {
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
+}
+
+.light ::selection {
+  background: rgba(0, 0, 0, 0.2);
+  color: #000;
 }
 
 /* Animations */
@@ -107,6 +141,29 @@ button:focus {
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 0%;
+    --radius: 0rem;
+  }
+
+  .dark {
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
     --card: 0 0% 5%;
@@ -121,12 +178,11 @@ button:focus {
     --muted-foreground: 0 0% 60%;
     --accent: 0 0% 15%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
     --ring: 0 0% 100%;
-    --radius: 0rem;
   }
 }
 
@@ -137,4 +193,14 @@ button:focus {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Hide Emergent watermark */
+[data-emergent-watermark],
+.emergent-watermark,
+div[class*="emergent"],
+a[href*="emergent"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }

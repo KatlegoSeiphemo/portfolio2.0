@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Send, Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+import { Send, Github, Linkedin, Mail, Phone, ArrowUpRight } from 'lucide-react';
 import { personalInfo } from '../data/mock';
+import { useTheme } from '../context/ThemeContext';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { isDark } = useTheme();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,11 +32,17 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative py-32 bg-black">
+    <section id="contact" className={`relative py-32 transition-colors duration-500 ${
+      isDark ? 'bg-black' : 'bg-white'
+    }`}>
       {/* Gradient Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-white/[0.02] rounded-full blur-3xl" />
+        <div className={`absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl ${
+          isDark ? 'bg-white/[0.02]' : 'bg-black/[0.02]'
+        }`} />
+        <div className={`absolute bottom-0 right-1/4 w-64 h-64 rounded-full blur-3xl ${
+          isDark ? 'bg-white/[0.02]' : 'bg-black/[0.02]'
+        }`} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
@@ -48,7 +56,7 @@ const ContactSection = () => {
               Get In Touch
             </p>
             <h2
-              className="text-4xl md:text-5xl font-bold text-white mb-8"
+              className={`text-4xl md:text-5xl font-bold mb-8 ${isDark ? 'text-white' : 'text-black'}`}
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
               Let's Work
@@ -56,7 +64,7 @@ const ContactSection = () => {
               <span className="text-gray-500">Together</span>
             </h2>
             <p
-              className="text-gray-400 text-lg leading-relaxed mb-12"
+              className={`text-lg leading-relaxed mb-12 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
               Have a project in mind or want to collaborate? I'd love to hear from you. Let's create something amazing together.
@@ -66,21 +74,49 @@ const ContactSection = () => {
             <div className="space-y-6">
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="group flex items-center gap-4 text-gray-400 hover:text-white transition-colors duration-300"
+                className={`group flex items-center gap-4 transition-colors duration-300 ${
+                  isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'
+                }`}
               >
-                <div className="p-3 border border-white/20 group-hover:bg-white group-hover:text-black transition-all duration-300">
+                <div className={`p-3 border transition-all duration-300 ${
+                  isDark 
+                    ? 'border-white/20 group-hover:bg-white group-hover:text-black' 
+                    : 'border-black/20 group-hover:bg-black group-hover:text-white'
+                }`}>
                   <Mail size={20} />
                 </div>
                 <span style={{ fontFamily: 'Archivo, sans-serif' }}>{personalInfo.email}</span>
                 <ArrowUpRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </a>
               <a
+                href={`tel:${personalInfo.phone.replace(/\s/g, '')}`}
+                className={`group flex items-center gap-4 transition-colors duration-300 ${
+                  isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'
+                }`}
+              >
+                <div className={`p-3 border transition-all duration-300 ${
+                  isDark 
+                    ? 'border-white/20 group-hover:bg-white group-hover:text-black' 
+                    : 'border-black/20 group-hover:bg-black group-hover:text-white'
+                }`}>
+                  <Phone size={20} />
+                </div>
+                <span style={{ fontFamily: 'Archivo, sans-serif' }}>{personalInfo.phone}</span>
+                <ArrowUpRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+              <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 text-gray-400 hover:text-white transition-colors duration-300"
+                className={`group flex items-center gap-4 transition-colors duration-300 ${
+                  isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'
+                }`}
               >
-                <div className="p-3 border border-white/20 group-hover:bg-white group-hover:text-black transition-all duration-300">
+                <div className={`p-3 border transition-all duration-300 ${
+                  isDark 
+                    ? 'border-white/20 group-hover:bg-white group-hover:text-black' 
+                    : 'border-black/20 group-hover:bg-black group-hover:text-white'
+                }`}>
                   <Github size={20} />
                 </div>
                 <span style={{ fontFamily: 'Archivo, sans-serif' }}>GitHub Profile</span>
@@ -90,9 +126,15 @@ const ContactSection = () => {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 text-gray-400 hover:text-white transition-colors duration-300"
+                className={`group flex items-center gap-4 transition-colors duration-300 ${
+                  isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'
+                }`}
               >
-                <div className="p-3 border border-white/20 group-hover:bg-white group-hover:text-black transition-all duration-300">
+                <div className={`p-3 border transition-all duration-300 ${
+                  isDark 
+                    ? 'border-white/20 group-hover:bg-white group-hover:text-black' 
+                    : 'border-black/20 group-hover:bg-black group-hover:text-white'
+                }`}>
                   <Linkedin size={20} />
                 </div>
                 <span style={{ fontFamily: 'Archivo, sans-serif' }}>LinkedIn Profile</span>
@@ -103,15 +145,17 @@ const ContactSection = () => {
 
           {/* Right Side - Form */}
           <div className="relative">
-            <div className="absolute -inset-4 border border-white/10" />
-            <div className="relative bg-white/[0.02] p-8 md:p-10">
+            <div className={`absolute -inset-4 border ${isDark ? 'border-white/10' : 'border-black/10'}`} />
+            <div className={`relative p-8 md:p-10 ${isDark ? 'bg-white/[0.02]' : 'bg-black/[0.02]'}`}>
               {submitted ? (
                 <div className="flex flex-col items-center justify-center h-full py-16">
-                  <div className="w-16 h-16 border border-white/30 flex items-center justify-center mb-6">
-                    <Send size={24} className="text-white" />
+                  <div className={`w-16 h-16 border flex items-center justify-center mb-6 ${
+                    isDark ? 'border-white/30' : 'border-black/30'
+                  }`}>
+                    <Send size={24} className={isDark ? 'text-white' : 'text-black'} />
                   </div>
                   <h3
-                    className="text-xl font-semibold text-white mb-2"
+                    className={`text-xl font-semibold mb-2 ${isDark ? 'text-white' : 'text-black'}`}
                     style={{ fontFamily: 'Archivo, sans-serif' }}
                   >
                     Message Sent!
@@ -137,7 +181,11 @@ const ContactSection = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors duration-300"
+                      className={`w-full px-4 py-3 bg-transparent border transition-colors duration-300 ${
+                        isDark 
+                          ? 'border-white/20 text-white placeholder-gray-600 focus:border-white' 
+                          : 'border-black/20 text-black placeholder-gray-400 focus:border-black'
+                      } focus:outline-none`}
                       style={{ fontFamily: 'Archivo, sans-serif' }}
                       placeholder="Your name"
                     />
@@ -157,7 +205,11 @@ const ContactSection = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors duration-300"
+                      className={`w-full px-4 py-3 bg-transparent border transition-colors duration-300 ${
+                        isDark 
+                          ? 'border-white/20 text-white placeholder-gray-600 focus:border-white' 
+                          : 'border-black/20 text-black placeholder-gray-400 focus:border-black'
+                      } focus:outline-none`}
                       style={{ fontFamily: 'Archivo, sans-serif' }}
                       placeholder="your@email.com"
                     />
@@ -177,7 +229,11 @@ const ContactSection = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors duration-300 resize-none"
+                      className={`w-full px-4 py-3 bg-transparent border transition-colors duration-300 resize-none ${
+                        isDark 
+                          ? 'border-white/20 text-white placeholder-gray-600 focus:border-white' 
+                          : 'border-black/20 text-black placeholder-gray-400 focus:border-black'
+                      } focus:outline-none`}
                       style={{ fontFamily: 'Archivo, sans-serif' }}
                       placeholder="Tell me about your project..."
                     />
@@ -185,12 +241,18 @@ const ContactSection = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-white text-black font-medium tracking-wide hover:bg-gray-200 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2"
+                    className={`w-full py-4 font-medium tracking-wide transition-all duration-300 flex items-center justify-center gap-2 ${
+                      isDark 
+                        ? 'bg-white text-black hover:bg-gray-200 disabled:bg-gray-300' 
+                        : 'bg-black text-white hover:bg-gray-800 disabled:bg-gray-700'
+                    } disabled:cursor-not-allowed`}
                     style={{ fontFamily: 'Archivo, sans-serif' }}
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                        <div className={`w-5 h-5 border-2 rounded-full animate-spin ${
+                          isDark ? 'border-black/30 border-t-black' : 'border-white/30 border-t-white'
+                        }`} />
                         Sending...
                       </>
                     ) : (
