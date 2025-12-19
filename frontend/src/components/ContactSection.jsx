@@ -175,6 +175,11 @@ const ContactSection = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="p-4 bg-red-500/10 border border-red-500/30 text-red-400 text-sm" style={{ fontFamily: 'Archivo, sans-serif' }}>
+                      {error}
+                    </div>
+                  )}
                   <div>
                     <label
                       htmlFor="name"
